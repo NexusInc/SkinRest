@@ -145,6 +145,8 @@ public class PlayerStorageImpl implements PlayerStorage {
             def.ifPresent(skinForResult -> setSkinIdOfPlayer(uuid, skinForResult.identifier()));
             return def;
         }
+
+
         return Optional.empty();
     }
 
