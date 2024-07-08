@@ -139,10 +139,12 @@ public class PlayerStorageImpl implements PlayerStorage {
             return premiumSkin.map(result -> new SkinForResult(SkinIdentifier.ofPlayer(result.getUniqueId()), result.getSkinProperty()));
         }
 
+        //Вот это
         if (defaultSkinsEnabled) {
-            return getDefaultSkin();
+            Optional<SkinForResult> def = getDefaultSkin();
+            def.ifPresent(skinForResult -> setSkinIdOfPlayer(uuid, skinForResult.identifier()));
+            return def;
         }
-
         return Optional.empty();
     }
 
